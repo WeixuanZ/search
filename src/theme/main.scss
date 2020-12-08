@@ -1,0 +1,109 @@
+body {
+  color: #fff;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  line-height: 1.6;
+}
+mark {
+  color: #fff;
+  background: none;
+}
+::selection {
+  color: #6ca0e8;
+  background: none;
+}
+
+.wrapper {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  display: flex;
+  padding-top: 80px;
+  align-items: flex-start;
+  -webkit-box-pack: center;
+  justify-content: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
+}
+.box {
+  z-index: 1200;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 16px 70px;
+  border-radius: 5px;
+  background-color: rgb(30, 29, 30);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 100vw;
+  width: 570px;
+  max-width: 570px;
+  max-height: 460px;
+}
+
+// .input-wrapper {
+// }
+.ais-SearchBox-input {
+  color: #fff;
+  width: 100%;
+  height: 70px;
+  background-color: transparent;
+  border: none;
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 12px;
+  padding-left: 20px;
+  font-size: 18px;
+  line-height: 23px;
+}
+.ais-SearchBox-submit,
+.ais-SearchBox-reset,
+.ais-SearchBox-loadingIndicator {
+  display: none !important;
+}
+.items-wrapper {
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0%;
+  list-style-type: none;
+  list-style-position: initial;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-top: 0px;
+  margin-top: 0px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: rgb(68, 66, 68);
+}
+.post-item {
+  padding: 20px;
+}
+.post-item:hover {
+  color: #fff;
+  background-color: #2a76dd;
+}
+.post-title {
+  font-weight: 600;
+  font-size: 20px;
+}
+.post-breadcrumbs {
+  font-weight: 600;
+}
+
+.ais-Highlight-highlighted {
+  color: #6ca0e8;
+}
+
+// .hints-wrapper {
+//   padding-top: 10px;
+//   padding-right: 20px;
+//   padding-bottom: 12px;
+//   padding-left: 20px;
+//   font-size: 12px;
+//   line-height: 14px;
+//   color: rgb(188, 187, 188);
+//   border-top-width: 1px;
+//   border-top-style: solid;
+//   border-top-color: rgb(68, 66, 68);
+// }
