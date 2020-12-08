@@ -5,11 +5,22 @@
     <title>Search</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type="text/css">
+      html,
+      body {
+        height: 100%;
+      }
       body {
         color: #222;
-        font-size: 14px;
+        font-size: 18px;
         font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica,
           Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+      }
+      .wrapper {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
       .icon {
         display: inline-block;
@@ -38,14 +49,21 @@
       </defs>
     </svg>
 
-    <div>
-      <svg class="icon icon-search-solid">
-        <use xlink:href="#icon-search-solid"></use>
-      </svg>
-      Click here to search
+    <div class="wrapper">
+      <div id="search-btn">
+        <svg class="icon icon-search-solid">
+          <use href="#icon-search-solid"></use>
+        </svg>
+        Click here to search
+      </div>
     </div>
 
-    <script src="index.ts"></script>
-    <script src="client.ts"></script>
+    <script
+      src="client.ts"
+      appid="NY54KQPZOR"
+      searchkey="9ca229b99004bebc73914c9170a8d693"
+      indexname="blog"
+      defer
+    ></script>
   </body>
 </html>

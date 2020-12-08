@@ -1,17 +1,16 @@
 import algoliasearch from 'algoliasearch/lite'
 import instantsearch from 'instantsearch.js'
-import { searchBox, hits } from 'instantsearch.js/es/widgets'
+import { searchBox } from 'instantsearch.js/es/widgets'
 import { connectHits } from 'instantsearch.js/es/connectors'
 
-const BASE_URL = 'https://weixuanz.github.io'
+import { decodeQuery } from './utils'
 
-const searchClient = algoliasearch(
-  'NY54KQPZOR',
-  '9ca229b99004bebc73914c9170a8d693'
-)
+const param = decodeQuery(location.search.substr(1))
+
+const searchClient = algoliasearch(param.appid, param.searchkey)
 
 const search = instantsearch({
-  indexName: 'blog',
+  indexName: param.indexname,
   searchClient
 })
 
@@ -40,7 +39,7 @@ const renderSnippet = (hit) =>
 const renderHit = (hit) => `
   <div
     class="post-item"
-    data-url="${BASE_URL}/${hit.url}"
+    data-url="${param.origin}/${hit.url}"
     onclick="window.open(this.getAttribute('data-url'), '_top')"
   >
     <span class="post-title">${hit.title}</span>

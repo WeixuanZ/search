@@ -1,13 +1,13 @@
 {
   "name": "search",
   "version": "0.0.1",
-  "description": "Algolia instant search integration for static blog",
+  "description": "Algolia instant search integration",
   "main": "index.js",
   "author": "W Zhang",
   "license": "MIT",
   "scripts": {
-    "dev": "parcel src/index.html src/search.html client.ts --public-url /search",
-    "build": "parcel build src/index.html src/search.html client.ts --public-url /search",
+    "dev": "parcel src/index.html src/search.html src/client.ts --port 4000 --public-url /search",
+    "build": "parcel build src/index.html src/search.html src/client.ts --public-url /search",
     "deploy": "gh-pages --dist /dist",
     "format": "prettier --config .prettierrc.json 'src/**/*.ts' --write"
   },
