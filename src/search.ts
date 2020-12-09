@@ -4,7 +4,13 @@ import { searchBox } from 'instantsearch.js/es/widgets'
 import { connectHits } from 'instantsearch.js/es/connectors'
 
 import { decodeQuery } from './utils'
-import { addMouseOverHandler, updateTargets, handleArrowUp, handleArrowDown, handleEnter } from './nav'
+import {
+  addMouseOverHandler,
+  updateTargets,
+  handleArrowUp,
+  handleArrowDown,
+  handleEnter
+} from './nav'
 
 const param = decodeQuery(location.search.substr(1))
 
@@ -100,14 +106,8 @@ const handleCloseClick = (event) => {
 
 document.querySelector('.wrapper').addEventListener('click', handleCloseClick)
 
-const frameHidden = () =>
-  parent.document.querySelector('#search').style.display === 'none'
-
 // listenn to keyboard events
 const handleKeydown = (event) => {
-  if (frameHidden()) {
-    return
-  }
   switch (event.keyCode) {
     case 27:
       event.preventDefault()
@@ -117,12 +117,14 @@ const handleKeydown = (event) => {
       handleEnter()
       break
     case 38: // arrow up
+      event.preventDefault()
       handleArrowUp()
       break
     case 40: // arrow down
+      event.preventDefault()
       handleArrowDown()
       break
   }
 }
 
-parent.addEventListener('keydown', handleKeydown)
+addEventListener('keydown', handleKeydown)

@@ -64,10 +64,14 @@ script.insertAdjacentHTML(
     attrs
   )}"></iframe></div>`
 )
-const frame = script.nextSibling as HTMLIFrameElement
+const frameWrapper = script.nextSibling as HTMLDivElement
 const searchBtn = document.querySelector('#search-btn') as HTMLDivElement
 searchBtn.style.cursor = 'pointer'
-searchBtn.addEventListener('click', () => (frame.style.display = 'block'))
+searchBtn.addEventListener('click', () => {
+  frameWrapper.style.display = 'block'
+  const frame = frameWrapper.firstChild as HTMLIFrameElement
+  frame.contentWindow.focus()
+})
 
 script.remove() // remove the original script tag
 
@@ -78,6 +82,7 @@ addEventListener('message', (event) => {
   }
   const data = event.data
   if (data && data.type === 'close') {
-    frame.style.display = 'none'
+    frameWrapper.style.display = 'none'
+    window.focus()
   }
 })
