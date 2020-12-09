@@ -49,7 +49,6 @@ const renderHit = (hit) => `
     class="post-item"
     data-url="${param.origin}${hit.url}"
     onclick="window.open(this.getAttribute('data-url'), '_top')"
-    onmouseleave="this.classList.remove('current')"
   >
     <span class="post-title">${hit.title}</span>
     ${renderBreadcrumbs(hit)}
