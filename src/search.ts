@@ -67,3 +67,19 @@ search.addWidgets([
 ])
 
 search.start()
+
+interface CloseMessage {
+  type: 'close'
+}
+
+const handleCloseClick = (event) => {
+  if (event.target !== event.currentTarget) {
+    return
+  }
+  const msg: CloseMessage = { type: 'close' }
+  parent.postMessage(msg, param.origin)
+}
+
+document.querySelector('.wrapper').addEventListener(
+  'click', handleCloseClick
+)

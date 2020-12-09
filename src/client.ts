@@ -69,3 +69,14 @@ searchBtn.style.cursor = 'pointer'
 searchBtn.addEventListener('click', () => (frame.style.display = 'block'))
 
 script.remove() // remove the original script tag
+
+// listen to message for hiding the search iframe
+addEventListener('message', (event) => {
+  if (event.origin !== searchOrigin) {
+    return
+  }
+  const data = event.data
+  if (data && data.type === 'close') {
+    frame.style.display = 'none'
+  }
+})
