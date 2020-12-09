@@ -64,7 +64,7 @@ script.insertAdjacentHTML(
     attrs
   )}"></iframe></div>`
 )
-const frame = script.nextSibling as HTMLDivElement
+const frame = script.nextSibling as HTMLIFrameElement
 const searchBtn = document.querySelector('#search-btn') as HTMLDivElement
 searchBtn.style.cursor = 'pointer'
 searchBtn.addEventListener('click', () => (frame.style.display = 'block'))

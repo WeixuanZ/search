@@ -69,11 +69,6 @@ mark {
   font-size: 18px;
   line-height: 23px;
 }
-.ais-SearchBox-submit,
-.ais-SearchBox-reset,
-.ais-SearchBox-loadingIndicator {
-  display: none !important;
-}
 
 .items-wrapper {
   flex-grow: 1;
@@ -91,14 +86,14 @@ mark {
 }
 .post-item {
   padding: 20px;
+  cursor: pointer;
   @include no-select;
-
-  &:hover {
-    color: #fff;
-    background-color: #2a76dd;
-    cursor: pointer;
-  }
 }
+.current {
+  color: #fff;
+  background-color: #2a76dd;
+}
+
 .post-title {
   font-weight: 600;
   font-size: 20px;
@@ -111,15 +106,16 @@ mark {
   color: #6ca0e8;
 }
 
-// .hints-wrapper {
-//   padding-top: 10px;
-//   padding-right: 20px;
-//   padding-bottom: 12px;
-//   padding-left: 20px;
-//   font-size: 12px;
-//   line-height: 14px;
-//   color: rgb(188, 187, 188);
-//   border-top-width: 1px;
-//   border-top-style: solid;
-//   border-top-color: rgb(68, 66, 68);
-// }
+.hints-wrapper {
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 12px;
+  padding-left: 20px;
+  font-size: 12px;
+  line-height: 14px;
+  color: rgb(188, 187, 188);
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: rgb(68, 66, 68);
+  display: none;
+}

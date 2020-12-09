@@ -4,8 +4,16 @@ import { searchBox } from 'instantsearch.js/es/widgets'
 import { connectHits } from 'instantsearch.js/es/connectors'
 
 import { decodeQuery } from './utils'
+import { addMouseOverHandler, updateTargets, handleArrowUp, handleArrowDown, handleEnter } from './nav'
 
 const param = decodeQuery(location.search.substr(1))
+
+// if the device does not have a touch screen, show keyboard hint
+const touchDevice =
+  navigator.maxTouchPoints || 'ontouchstart' in document.documentElement
+if (!touchDevice) {
+  document.querySelector('.hints-wrapper').style.display = 'block'
+}
 
 const searchClient = algoliasearch(param.appid, param.searchkey)
 
@@ -39,8 +47,9 @@ const renderSnippet = (hit) =>
 const renderHit = (hit) => `
   <div
     class="post-item"
-    data-url="${param.origin}/${hit.url}"
+    data-url="${param.origin}${hit.url}"
     onclick="window.open(this.getAttribute('data-url'), '_top')"
+    onmouseleave="this.classList.remove('current')"
   >
     <span class="post-title">${hit.title}</span>
     ${renderBreadcrumbs(hit)}
@@ -52,6 +61,8 @@ const renderHits = (renderOptions, isFirstRender) => {
   document.querySelector(widgetParams.container).innerHTML = hits
     .map(renderHit)
     .join('')
+  updateTargets()
+  addMouseOverHandler()
 }
 
 const customHits = connectHits(renderHits)
@@ -59,7 +70,11 @@ const customHits = connectHits(renderHits)
 search.addWidgets([
   searchBox({
     container: '#searchbox',
-    placeholder: 'Type to search'
+    placeholder: 'Type to search',
+    autofocus: true,
+    showReset: false,
+    showSubmit: false,
+    showLoadingIndicator: false
   }),
   customHits({
     container: '#hits'
@@ -72,14 +87,43 @@ interface CloseMessage {
   type: 'close'
 }
 
-const handleCloseClick = (event) => {
-  if (event.target !== event.currentTarget) {
-    return
-  }
+const hideFrame = () => {
   const msg: CloseMessage = { type: 'close' }
   parent.postMessage(msg, param.origin)
 }
 
-document.querySelector('.wrapper').addEventListener(
-  'click', handleCloseClick
-)
+const handleCloseClick = (event) => {
+  if (event.target !== event.currentTarget) {
+    return
+  }
+  hideFrame()
+}
+
+document.querySelector('.wrapper').addEventListener('click', handleCloseClick)
+
+const frameHidden = () =>
+  parent.document.querySelector('#search').style.display === 'none'
+
+// listenn to keyboard events
+const handleKeydown = (event) => {
+  if (frameHidden()) {
+    return
+  }
+  switch (event.keyCode) {
+    case 27:
+      event.preventDefault()
+      hideFrame()
+      break
+    case 13: // enter
+      handleEnter()
+      break
+    case 38: // arrow up
+      handleArrowUp()
+      break
+    case 40: // arrow down
+      handleArrowDown()
+      break
+  }
+}
+
+parent.addEventListener('keydown', handleKeydown)
